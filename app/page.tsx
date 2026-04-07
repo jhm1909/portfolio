@@ -73,16 +73,26 @@ export default function Home() {
 
   /* Scroll reveal */
   useEffect(() => {
+    const elements = document.querySelectorAll(".reveal, .reveal-stagger");
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) e.target.classList.add("visible");
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px -40px 0px" }
     );
-    document.querySelectorAll(".reveal, .reveal-stagger").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+
+    // Small delay to let page transition finish, then observe
+    const timer = setTimeout(() => {
+      elements.forEach((el) => observer.observe(el));
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
   }, []);
 
   /* Hero orb parallax */
