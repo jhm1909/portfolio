@@ -39,6 +39,9 @@ yarn-error.log*
 # cloudflare / open-next
 .open-next/
 
+# playwright
+.playwright-mcp/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
