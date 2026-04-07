@@ -125,7 +125,7 @@ export default function Home() {
     e.preventDefault();
     const subject = encodeURIComponent(`Portfolio Contact: ${formState.name}`);
     const body = encodeURIComponent(`From: ${formState.name} (${formState.email})\n\n${formState.message}`);
-    window.location.href = `mailto:hello@capy.dev?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:hello@cappy.dev?subject=${subject}&body=${body}`;
     setFormStatus("sent");
     setFormState({ name: "", email: "", message: "" });
   };
@@ -142,7 +142,7 @@ export default function Home() {
       {/* ── Nav ── */}
       <nav className="fixed top-0 left-0 right-0 z-50 liquid-glass-nav">
         <div className="max-w-[980px] mx-auto px-6 h-11 flex items-center justify-between">
-          <a href="#" className="text-[13px] font-semibold tracking-[-0.01em]">Capy.</a>
+          <a href="#" className="text-[13px] font-semibold tracking-[-0.01em]">Cappy.</a>
 
           {/* Desktop nav */}
           <div className="hidden sm:flex gap-7 text-[12px] text-white/50">
@@ -402,7 +402,7 @@ export default function Home() {
       {/* ── Footer ── */}
       <footer className="border-t border-white/[0.04]">
         <div className="max-w-[980px] mx-auto px-6 py-4 flex items-center justify-between text-[10px] sm:text-[11px] text-white/20">
-          <span>&copy; 2026 Capy. All rights reserved.</span>
+          <span>&copy; 2026 Cappy. All rights reserved.</span>
           <div className="flex gap-4">
             <Link href="/blog" className="hover:text-white/50 transition-colors duration-300">Blog</Link>
             <a href="#" className="hover:text-white/50 transition-colors duration-300">Back to top</a>

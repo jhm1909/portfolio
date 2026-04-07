@@ -131,7 +131,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
       <nav className="fixed top-0 left-0 right-0 z-50 liquid-glass-nav">
         <div className="max-w-[980px] mx-auto px-6 h-11 flex items-center justify-between">
-          <Link href="/" className="text-[13px] font-semibold tracking-[-0.01em]">Capy.</Link>
+          <Link href="/" className="text-[13px] font-semibold tracking-[-0.01em]">Cappy.</Link>
           <Link href="/blog" className="text-[12px] text-white/50 hover:text-white/90 transition-colors duration-300">
             Back to Blog
           </Link>
@@ -206,7 +206,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
       <footer className="border-t border-white/[0.04]">
         <div className="max-w-[680px] mx-auto px-6 py-4 flex items-center justify-between text-[10px] sm:text-[11px] text-white/20">
-          <span>&copy; 2026 Capy. All rights reserved.</span>
+          <span>&copy; 2026 Cappy. All rights reserved.</span>
           <Link href="/blog" className="hover:text-white/50 transition-colors duration-300">All posts</Link>
         </div>
       </footer>

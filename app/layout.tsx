@@ -14,18 +14,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Capy — Developer",
+  title: "Cappy — Developer",
   description: "Crafting digital experiences with precision and purpose.",
-  metadataBase: new URL("https://capy.dev"),
+  metadataBase: new URL("https://cappy.dev"),
   openGraph: {
-    title: "Capy — Developer",
+    title: "Cappy — Developer",
     description: "Crafting digital experiences with precision and purpose.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Capy — Developer",
+    title: "Cappy — Developer",
     description: "Crafting digital experiences with precision and purpose.",
   },
   icons: {
