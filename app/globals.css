@@ -21,6 +21,36 @@ body {
   background: rgba(255, 255, 255, 0.12);
 }
 
+/* ===== Skip to Content — a11y ===== */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 0 0.75rem 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  color: #fff;
+  font-size: 13px;
+  text-decoration: none;
+  transition: top 0.3s ease;
+}
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* ===== Focus Visible — keyboard nav ===== */
+:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.25);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* ========================================
    APPLE LIQUID GLASS MATERIAL SYSTEM
    Based on WWDC25 Liquid Glass specs:
@@ -286,8 +316,71 @@ button:hover .link-arrow {
     inset 0 0.5px 0 rgba(255, 255, 255, 0.25);
 }
 
+/* ===== Live Preview ===== */
+.live-preview {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 0.5px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.live-preview:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.live-preview-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.live-preview-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 800px;
+  transform-origin: top left;
+  transform: scale(var(--preview-scale, 0.234));
+  border: none;
+  pointer-events: none;
+  background: #000;
+}
+
+@keyframes preview-spin {
+  to { transform: rotate(360deg); }
+}
+.live-preview-pulse {
+  animation: preview-spin 1s linear infinite;
+}
+
 /* ===== Scrollbar ===== */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.12); }
+
+/* ===== Reduced Motion — a11y ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .reveal-stagger > * { opacity: 1; transform: none; }
+}
+
+/* ===== Backdrop-filter fallback ===== */
+@supports not (backdrop-filter: blur(1px)) {
+  .liquid-glass,
+  .liquid-glass-elevated { background: rgba(30, 30, 30, 0.85); }
+  .liquid-glass-nav { background: rgba(0, 0, 0, 0.85); }
+  .liquid-glass-subtle { background: rgba(30, 30, 30, 0.6); }
+  .liquid-glass-pill { background: rgba(40, 40, 40, 0.7); }
+}
