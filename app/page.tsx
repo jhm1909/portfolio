@@ -110,25 +110,14 @@ export default function Home() {
   /* Close menu on nav click */
   const navClick = () => setMenuOpen(false);
 
-  /* Contact form handler */
-  const handleSubmit = async (e: React.FormEvent) => {
+  /* Contact form handler — opens mailto with form data */
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setFormStatus("sending");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formState),
-      });
-      if (res.ok) {
-        setFormStatus("sent");
-        setFormState({ name: "", email: "", message: "" });
-      } else {
-        setFormStatus("error");
-      }
-    } catch {
-      setFormStatus("error");
-    }
+    const subject = encodeURIComponent(`Portfolio Contact: ${formState.name}`);
+    const body = encodeURIComponent(`From: ${formState.name} (${formState.email})\n\n${formState.message}`);
+    window.location.href = `mailto:hello@capy.dev?subject=${subject}&body=${body}`;
+    setFormStatus("sent");
+    setFormState({ name: "", email: "", message: "" });
   };
 
   return (
@@ -382,8 +371,8 @@ export default function Home() {
                 {formStatus === "sending" ? "Sending..." : formStatus === "sent" ? "Sent!" : "Send Message"}
                 {formStatus === "idle" && <Arrow className="link-arrow mt-px" />}
               </button>
-              {formStatus === "error" && (
-                <p className="text-[12px] text-red-400/70 text-center">Something went wrong. Try emailing me directly.</p>
+              {formStatus === "sent" && (
+                <p className="text-[12px] text-green-400/70 text-center">Opening your email client...</p>
               )}
             </form>
 
