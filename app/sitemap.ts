@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { posts } from "@/lib/data";
+import { posts, projects } from "@/lib/data";
 
 const BASE = "https://cappy.dev";
 
@@ -9,6 +9,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
+  }));
+
+  const workEntries = projects.map((project) => ({
+    url: `${BASE}/work/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
   }));
 
   return [
@@ -24,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    ...workEntries,
     ...blogEntries,
   ];
 }

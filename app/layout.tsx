@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import PageTransition from "@/components/PageTransition";
 import JsonLd from "@/components/JsonLd";
 import "./globals.css";
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://cappy.dev"),
   alternates: {
     canonical: "/",
+    types: { "application/rss+xml": "/feed.xml" },
   },
   openGraph: {
     title: "Cappy — Developer",
@@ -85,6 +87,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <PageTransition>{children}</PageTransition>
+        <Analytics />
       </body>
     </html>
   );
