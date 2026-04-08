@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import Link from "next/link";
 import { projects } from "@/lib/data";
 import LivePreview from "./LivePreview";
-import TechIcon from "./TechIcon";
+import TechPill from "./TechPill";
 
 function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   const previewRef = useRef<HTMLDivElement>(null);
@@ -23,7 +24,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   }, [updateScale]);
 
   return (
-    <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
+    <Link href={`/work/${project.slug}`} className="block">
       <article className="project-card liquid-glass relative group">
         <div
           className="absolute -top-12 -right-12 w-40 sm:w-56 h-40 sm:h-56 rounded-full blur-[100px] pointer-events-none opacity-30"
@@ -37,10 +38,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
             <p className="text-[12px] sm:text-[13px] text-white/40 leading-[1.7] mb-4">{project.description}</p>
             <div className="flex flex-wrap gap-1.5">
               {project.tech.map((t) => (
-                <span key={t} className="liquid-glass-pill inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] sm:text-[11px] text-white/40">
-                  <TechIcon name={t} />
-                  {t}
-                </span>
+                <TechPill key={t} name={t} />
               ))}
             </div>
           </div>
@@ -57,7 +55,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
           )}
         </div>
       </article>
-    </a>
+    </Link>
   );
 }
 

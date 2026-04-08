@@ -5,9 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navLinks } from "@/lib/data";
 
+const SECTION_IDS = ["work", "about", "contact"];
+
 export default function Nav() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const navRef = useRef<HTMLElement>(null);
 
   const close = useCallback(() => setMenuOpen(false), []);
@@ -15,9 +18,7 @@ export default function Nav() {
   /* Close on Escape */
   useEffect(() => {
     if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [menuOpen, close]);
@@ -34,13 +35,40 @@ export default function Nav() {
 
   /* Lock body scroll when menu is open */
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    document.documentElement.classList.toggle("menu-open", menuOpen);
+    return () => { document.documentElement.classList.remove("menu-open"); };
   }, [menuOpen]);
+
+  /* Reset active section when navigating away from home */
+  const isHome = pathname === "/";
+
+  /* Scroll spy — track active section on home page */
+  useEffect(() => {
+    if (!isHome) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length > 0) {
+          // Pick the one with highest intersection ratio
+          const best = visible.reduce((a, b) => a.intersectionRatio > b.intersectionRatio ? a : b);
+          setActiveSection(best.target.id);
+        }
+      },
+      { threshold: [0.1, 0.3, 0.5], rootMargin: "-44px 0px -40% 0px" }
+    );
+
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(Boolean);
+    sections.forEach((s) => observer.observe(s!));
+    return () => observer.disconnect();
+  }, [isHome]);
 
   const isActive = (href: string) => {
     if (href === "/blog") return pathname.startsWith("/blog");
-    if (href.startsWith("/#")) return pathname === "/";
+    if (href.startsWith("/#")) {
+      const section = href.replace("/#", "");
+      return isHome && activeSection === section;
+    }
     return pathname === href;
   };
 
@@ -57,13 +85,16 @@ export default function Nav() {
             <Link
               key={label}
               href={href}
-              className={`transition-colors duration-300 ${
+              className={`relative transition-colors duration-300 ${
                 isActive(href) ? "text-white/90" : "text-white/50 hover:text-white/90"
               }`}
               aria-current={isActive(href) ? "page" : undefined}
               onClick={close}
             >
               {label}
+              {isActive(href) && (
+                <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-white/40 rounded-full nav-indicator" />
+              )}
             </Link>
           ))}
         </div>
@@ -82,10 +113,7 @@ export default function Nav() {
       </div>
 
       {/* Mobile menu dropdown */}
-      <div
-        className={`sm:hidden overflow-hidden transition-all duration-400 ${menuOpen ? "max-h-60" : "max-h-0"}`}
-        role="menu"
-      >
+      <div className={`sm:hidden overflow-hidden transition-all duration-400 ${menuOpen ? "max-h-60" : "max-h-0"}`} role="menu">
         <div className="px-6 py-4 flex flex-col gap-4 text-[14px]">
           {navLinks.map(({ label, href }) => (
             <Link

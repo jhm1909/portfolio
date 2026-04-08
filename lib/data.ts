@@ -2,39 +2,77 @@
 
 export interface Project {
   title: string;
+  slug: string;
   subtitle: string;
   description: string;
   tech: string[];
   orb: string;
   link?: string;
+  challenge?: string;
+  solution?: string;
+  result?: string;
+  features?: string[];
 }
 
 export const projects: Project[] = [
   {
     title: "MyCar",
+    slug: "mycar",
     subtitle: "Automotive Platform",
     description:
       "A bilingual car marketplace with AI-powered recommendations, budget-based search, vehicle comparison, and dealership locator with interactive maps.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "AI/ML"],
     orb: "#38bdf8",
     link: "https://mycar-orcin.vercel.app/ko",
+    challenge: "International students in Korea struggle to find affordable cars — existing platforms are Korean-only with no budget filtering or AI guidance.",
+    solution: "Built a bilingual (KO/EN) marketplace with AI-powered budget recommendations, interactive map-based dealership discovery, and side-by-side vehicle comparison.",
+    result: "Reduced average car search time by helping users filter by budget first, then refine with AI suggestions tailored to their needs.",
+    features: [
+      "AI-powered car recommendations based on budget and preferences",
+      "Bilingual interface (Korean / English) with seamless switching",
+      "Interactive dealership locator with map integration",
+      "Side-by-side vehicle comparison tool",
+      "Budget-based search with smart filtering",
+    ],
   },
   {
     title: "Hey Nabi",
+    slug: "heynabi",
     subtitle: "Real-time Translation",
     description:
       "A real-time lecture translation platform for international students, featuring speech-to-text and AI-powered translation across Korean, Chinese, Japanese, Vietnamese, and English.",
     tech: ["Astro", "Gemini AI", "Soniox", "Cloudflare"],
     orb: "#a78bfa",
     link: "https://heynabi.cappy.workers.dev",
+    challenge: "International students miss critical lecture content because real-time translation tools are either too slow, inaccurate, or not designed for academic contexts.",
+    solution: "Created a specialized platform using Soniox for high-accuracy STT and Gemini 2.5 Flash for context-aware academic translation with under 2-second latency.",
+    result: "Achieved 99% STT accuracy with sub-2s translation latency, supporting 5 languages for live lectures, study sessions, and group projects.",
+    features: [
+      "Real-time speech-to-text with 99% accuracy via Soniox",
+      "AI translation powered by Gemini 2.5 Flash",
+      "5 languages: Korean, Chinese, Japanese, Vietnamese, English",
+      "Under 2-second translation latency",
+      "Google Sign-in authentication",
+    ],
   },
 ];
 
-export const skills = [
-  "React", "Next.js", "TypeScript", "Node.js",
-  "Tailwind CSS", "PostgreSQL", "Prisma", "Docker",
-  "Git", "AWS", "Vercel", "Figma",
-];
+export const techExperience: Record<string, { level: string; years: string }> = {
+  "React": { level: "Advanced", years: "3+ years" },
+  "Next.js": { level: "Advanced", years: "2+ years" },
+  "TypeScript": { level: "Advanced", years: "2+ years" },
+  "Node.js": { level: "Intermediate", years: "2+ years" },
+  "Tailwind CSS": { level: "Advanced", years: "2+ years" },
+  "PostgreSQL": { level: "Intermediate", years: "1+ year" },
+  "Prisma": { level: "Intermediate", years: "1+ year" },
+  "Docker": { level: "Beginner", years: "< 1 year" },
+  "Git": { level: "Advanced", years: "3+ years" },
+  "AWS": { level: "Beginner", years: "< 1 year" },
+  "Vercel": { level: "Advanced", years: "2+ years" },
+  "Figma": { level: "Intermediate", years: "1+ year" },
+};
+
+export const skills = Object.keys(techExperience);
 
 export interface Experience {
   role: string;
@@ -70,6 +108,7 @@ export interface BlogPost {
   excerpt: string;
   date: string;
   readTime: string;
+  tags: string[];
   content: string;
 }
 
@@ -80,6 +119,7 @@ export const posts: BlogPost[] = [
     excerpt: "How I recreated Apple's WWDC25 Liquid Glass design language using CSS backdrop-filter, layered materials, and subtle depth cues.",
     date: "2026-04-07",
     readTime: "5 min read",
+    tags: ["CSS", "Design", "WWDC25"],
     content: `
 Apple's WWDC25 introduction of Liquid Glass changed how we think about interface materials. The design language treats UI elements as responsive glass — refracting, reflecting, and adapting to their surroundings.
 
@@ -125,6 +165,7 @@ The result is a material system that feels alive without being distracting — e
     excerpt: "The best interfaces feel invisible. Here's how I approach design decisions with restraint and purpose.",
     date: "2026-03-20",
     readTime: "4 min read",
+    tags: ["Design", "UX", "Philosophy"],
     content: `
 Every feature you add is a decision you're forcing on your user. The best interfaces don't ask users to think — they guide them naturally.
 
@@ -159,6 +200,7 @@ Simplicity isn't the starting point. It's the destination you reach after unders
     excerpt: "The tools, extensions, and workflows I use every day to stay productive and ship faster.",
     date: "2026-03-01",
     readTime: "6 min read",
+    tags: ["Tooling", "Productivity", "Dev"],
     content: `
 Every developer has their setup. Here's mine — optimized for speed, focus, and minimal context-switching.
 
@@ -191,6 +233,10 @@ My setup philosophy is: fewer tools, known deeply. I'd rather master 5 tools tha
   },
 ];
 
+export function getAllTags(): string[] {
+  return [...new Set(posts.flatMap((p) => p.tags))];
+}
+
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return posts.find((p) => p.slug === slug);
 }
@@ -201,4 +247,8 @@ export function getAdjacentPosts(slug: string) {
     prev: idx > 0 ? posts[idx - 1] : null,
     next: idx < posts.length - 1 ? posts[idx + 1] : null,
   };
+}
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug);
 }

@@ -15,10 +15,10 @@ export default function ScrollReveal() {
       { threshold: 0.05, rootMargin: "0px 0px -40px 0px" }
     );
 
-    // Small delay to let page transition finish
+    // Brief delay to let page transition start
     const timer = setTimeout(() => {
       elements.forEach((el) => observer.observe(el));
-    }, 100);
+    }, 50);
 
     return () => {
       clearTimeout(timer);

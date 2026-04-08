@@ -8,6 +8,9 @@
 html {
   scroll-behavior: smooth;
 }
+html.menu-open {
+  overflow: hidden;
+}
 
 body {
   background: #000;
@@ -199,6 +202,24 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+}
+
+/* ===== Nav Indicator ===== */
+@keyframes nav-indicator-in {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+.nav-indicator {
+  animation: nav-indicator-in 0.25s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+/* ===== Page Enter Transition ===== */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: page-enter 0.3s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
 /* ===== Scroll Reveal ===== */

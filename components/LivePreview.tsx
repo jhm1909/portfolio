@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface LivePreviewProps {
   url: string;
@@ -9,9 +9,29 @@ interface LivePreviewProps {
 
 export default function LivePreview({ url, title }: LivePreviewProps) {
   const [loaded, setLoaded] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  /* Only mount iframe when visible in viewport */
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMounted(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="live-preview group/preview" aria-label={`Live preview of ${title}`}>
+    <div ref={containerRef} className="live-preview group/preview" aria-label={`Live preview of ${title}`}>
       {/* Browser chrome */}
       <div className="flex items-center gap-1.5 px-3 py-2 border-b border-white/[0.06]">
         <span className="w-[7px] h-[7px] rounded-full bg-white/[0.08]" />
@@ -29,14 +49,16 @@ export default function LivePreview({ url, title }: LivePreviewProps) {
           </div>
         )}
 
-        <iframe
-          src={url}
-          title={`${title} live preview`}
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin"
-          onLoad={() => setLoaded(true)}
-          className="live-preview-iframe"
-        />
+        {mounted && (
+          <iframe
+            src={url}
+            title={`${title} live preview`}
+            loading="lazy"
+            sandbox="allow-scripts allow-popups"
+            onLoad={() => setLoaded(true)}
+            className="live-preview-iframe"
+          />
+        )}
       </div>
 
       {/* Hover overlay */}
