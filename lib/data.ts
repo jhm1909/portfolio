@@ -19,6 +19,15 @@ export const projects: Project[] = [
     orb: "#38bdf8",
     link: "https://mycar-orcin.vercel.app/ko",
   },
+  {
+    title: "Hey Nabi",
+    subtitle: "Real-time Translation",
+    description:
+      "A real-time lecture translation platform for international students, featuring speech-to-text and AI-powered translation across Korean, Chinese, Japanese, Vietnamese, and English.",
+    tech: ["Astro", "Gemini AI", "Soniox", "Cloudflare"],
+    orb: "#a78bfa",
+    link: "https://heynabi.cappy.workers.dev",
+  },
 ];
 
 export const skills = [
