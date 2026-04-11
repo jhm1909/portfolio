@@ -1,0 +1,75 @@
+{
+  "Metadata": {
+    "rootTitle": "Jeong Ha-min — Lập trình viên Full-Stack",
+    "rootDescription": "Lập trình viên full-stack tại Hàn Quốc. Nhận dự án freelance toàn cầu: tích hợp AI, SaaS MVP, website marketing.",
+    "siteName": "Jeong Ha-min",
+    "blogTitle": "Blog — Jeong Ha-min",
+    "blogDescription": "Những suy nghĩ về lập trình, thiết kế và xây dựng trải nghiệm số."
+  },
+  "Nav": {
+    "work": "Dự án",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ",
+    "blog": "Blog",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu"
+  },
+  "Hero": {
+    "eyebrow": "Lập trình viên & Thiết kế",
+    "titleLine1": "Tạo nên trải nghiệm",
+    "titleLine2": "số.",
+    "subtitle": "Tôi xây dựng giao diện mượt mà — đơn giản, chính xác và có mục đích.",
+    "cta": "Xem dự án"
+  },
+  "Work": {
+    "eyebrow": "Dự án chọn lọc",
+    "title": "Những gì tôi đã xây."
+  },
+  "About": {
+    "eyebrow": "Giới thiệu",
+    "title": "Đôi nét về tôi.",
+    "paragraph1": "Tôi là một lập trình viên tin rằng phần mềm tốt nhất là phần mềm vô hình. Công việc của tôi được dẫn dắt bởi sự rõ ràng — trong code, trong thiết kế và trong cách người dùng trải nghiệm sản phẩm.",
+    "paragraph2": "Tôi tập trung vào giao điểm giữa kỹ thuật và thiết kế, tạo ra sản phẩm không chỉ vững về công nghệ mà còn thật sự dễ chịu khi sử dụng. Mỗi pixel, mỗi tương tác — đều quan trọng.",
+    "techLabel": "Công nghệ",
+    "journeyLabel": "Hành trình"
+  },
+  "Contact": {
+    "eyebrow": "Liên hệ",
+    "title": "Cùng trao đổi nhé.",
+    "description": "Bạn quan tâm hợp tác? Tôi rất muốn lắng nghe từ bạn.",
+    "nameLabel": "Tên",
+    "namePlaceholder": "Tên của bạn",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "messageLabel": "Nội dung",
+    "messagePlaceholder": "Hãy kể cho tôi về dự án của bạn...",
+    "buttonIdle": "Gửi tin nhắn",
+    "buttonSent": "Đang mở ứng dụng email...",
+    "subjectPrefix": "Liên hệ từ Portfolio"
+  },
+  "Footer": {
+    "copyright": "Mọi quyền được bảo lưu.",
+    "backToTop": "Lên đầu trang"
+  },
+  "BlogList": {
+    "eyebrow": "Blog",
+    "title": "Suy nghĩ & ghi chép.",
+    "searchPlaceholder": "Tìm bài viết...",
+    "allTagFilter": "Tất cả",
+    "noResults": "Không tìm thấy bài viết nào."
+  },
+  "BlogPost": {
+    "previous": "Trước",
+    "next": "Sau",
+    "navAriaLabel": "Điều hướng bài viết blog"
+  },
+  "CaseStudy": {
+    "challenge": "Vấn đề",
+    "solution": "Giải pháp",
+    "result": "Kết quả",
+    "features": "Tính năng chính",
+    "backToWork": "Quay lại dự án",
+    "visitSite": "Truy cập website",
+    "livePreviewAria": "Xem trước trực tiếp {title}"
+  }
+}

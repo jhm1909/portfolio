@@ -1,6 +1,6 @@
 import { posts } from "@/lib/data";
 
-const BASE = "https://cappy.dev";
+const BASE = "https://jeonghamin.dev";
 
 export async function GET() {
   const items = posts
@@ -19,7 +19,7 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cappy — Blog</title>
+    <title>Ha-min Jeong — Blog</title>
     <link>${BASE}/blog</link>
     <description>Thoughts on development, design, and building digital experiences.</description>
     <language>en-us</language>

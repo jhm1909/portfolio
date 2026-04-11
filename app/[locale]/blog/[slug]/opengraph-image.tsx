@@ -1,14 +1,21 @@
 import { ImageResponse } from "next/og";
 import { getPostBySlug, posts } from "@/lib/data";
+import { routing } from "@/i18n/routing";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export function generateStaticParams() {
-  return posts.map((p) => ({ slug: p.slug }));
+  return routing.locales.flatMap((locale) =>
+    posts.map((p) => ({ locale, slug: p.slug }))
+  );
 }
 
-export default async function OGImage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function OGImage({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>;
+}) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
 
@@ -36,7 +43,7 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
             marginBottom: "20px",
           }}
         >
-          Cappy — Blog
+          Ha-min Jeong — Blog
         </div>
         <div
           style={{

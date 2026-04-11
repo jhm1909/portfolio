@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { projects } from "@/lib/data";
 import LivePreview from "./LivePreview";
 import TechPill from "./TechPill";
@@ -60,13 +61,14 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
 }
 
 export default function Work() {
+  const t = useTranslations("Work");
   return (
     <section id="work" className="relative py-20 sm:py-32 lg:py-44 scroll-mt-12">
       <div className="max-w-[980px] mx-auto px-6">
         <div className="reveal text-center mb-14 sm:mb-24">
-          <p className="text-[12px] sm:text-[13px] text-white/35 tracking-[0.12em] uppercase mb-3 sm:mb-4">Selected Work</p>
+          <p className="text-[12px] sm:text-[13px] text-white/35 tracking-[0.12em] uppercase mb-3 sm:mb-4">{t("eyebrow")}</p>
           <h2 className="text-[clamp(28px,5vw,56px)] font-semibold tracking-[-0.03em]">
-            Things I&apos;ve built.
+            {t("title")}
           </h2>
         </div>
 

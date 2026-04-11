@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import Arrow from "./Arrow";
 
 export default function Hero() {
+  const t = useTranslations("Hero");
   const heroRef = useRef<HTMLDivElement>(null);
 
   /* Hero orb parallax — mouse-only devices */
@@ -47,19 +49,19 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-3xl">
         <p className="reveal text-[12px] sm:text-[13px] text-white/55 tracking-[0.12em] uppercase mb-6 sm:mb-8">
-          Developer &amp; Designer
+          {t("eyebrow")}
         </p>
         <h1 className="reveal text-gradient-hero text-[clamp(36px,8vw,96px)] font-semibold tracking-[-0.04em] leading-[1.08]">
-          Crafting digital
+          {t("titleLine1")}
           <br />
-          experiences.
+          {t("titleLine2")}
         </h1>
         <p className="reveal mt-6 sm:mt-8 text-[15px] sm:text-[21px] text-white/40 max-w-[500px] mx-auto leading-[1.65] font-light px-2">
-          I build interfaces that feel effortless — simple, precise, and purposeful.
+          {t("subtitle")}
         </p>
         <div className="reveal mt-10 sm:mt-14">
           <a href="#work" className="btn-liquid liquid-glass-elevated inline-flex items-center justify-center gap-2 text-white text-[13px] font-medium px-7 py-3 rounded-full">
-            See my work <Arrow className="link-arrow mt-px" />
+            {t("cta")} <Arrow className="link-arrow mt-px" />
           </a>
         </div>
       </div>

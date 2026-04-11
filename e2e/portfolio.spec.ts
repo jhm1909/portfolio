@@ -94,7 +94,7 @@ test.describe("RSS & SEO", () => {
     expect(res.headers()["content-type"]).toContain("xml");
     const body = await res.text();
     expect(body).toContain("<rss");
-    expect(body).toContain("Cappy");
+    expect(body).toContain("Ha-min Jeong");
   });
 
   test("sitemap returns XML", async ({ request }) => {
@@ -112,6 +112,40 @@ test.describe("RSS & SEO", () => {
     expect(res.headers()["x-content-type-options"]).toBe("nosniff");
     expect(res.headers()["referrer-policy"]).toBe("strict-origin-when-cross-origin");
     expect(res.headers()["content-security-policy"]).toBeTruthy();
+  });
+});
+
+test.describe("i18n", () => {
+  test("Korean locale loads with translated nav", async ({ page }) => {
+    await page.goto(`${BASE}/ko`);
+    await expect(page.locator("html")).toHaveAttribute("lang", "ko");
+    const nav = page.getByRole("navigation");
+    await expect(nav.getByRole("link", { name: "프로젝트" })).toBeVisible();
+    await expect(nav.getByRole("link", { name: "소개" })).toBeVisible();
+    await expect(nav.getByRole("link", { name: "블로그" })).toBeVisible();
+  });
+
+  test("Vietnamese locale loads with translated nav", async ({ page }) => {
+    await page.goto(`${BASE}/vi`);
+    await expect(page.locator("html")).toHaveAttribute("lang", "vi");
+    const nav = page.getByRole("navigation");
+    await expect(nav.getByRole("link", { name: "Dự án" })).toBeVisible();
+    await expect(nav.getByRole("link", { name: "Giới thiệu" })).toBeVisible();
+  });
+
+  test("English default locale has no prefix", async ({ page }) => {
+    await page.goto(BASE);
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    expect(page.url()).toBe(`${BASE}/`);
+  });
+
+  test("sitemap contains locale alternates", async ({ request }) => {
+    const res = await request.get(`${BASE}/sitemap.xml`);
+    const body = await res.text();
+    expect(body).toContain("hreflang=\"ko\"");
+    expect(body).toContain("hreflang=\"vi\"");
+    expect(body).toContain("/ko/blog");
+    expect(body).toContain("/vi/work/mycar");
   });
 });
 

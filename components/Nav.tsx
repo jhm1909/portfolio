@@ -1,13 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import { navLinks } from "@/lib/data";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const SECTION_IDS = ["work", "about", "contact"];
 
 export default function Nav() {
+  const t = useTranslations("Nav");
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -76,14 +78,14 @@ export default function Nav() {
     <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 liquid-glass-nav" role="navigation" aria-label="Main navigation">
       <div className="max-w-[980px] mx-auto px-6 h-11 flex items-center justify-between">
         <Link href="/" className="text-[13px] font-semibold tracking-[-0.01em]" onClick={close}>
-          Cappy.
+          Ha-min.
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden sm:flex gap-7 text-[12px]">
-          {navLinks.map(({ label, href }) => (
+        <div className="hidden sm:flex items-center gap-7 text-[12px]">
+          {navLinks.map(({ key, href }) => (
             <Link
-              key={label}
+              key={key}
               href={href}
               className={`relative transition-colors duration-300 ${
                 isActive(href) ? "text-white/90" : "text-white/50 hover:text-white/90"
@@ -91,19 +93,20 @@ export default function Nav() {
               aria-current={isActive(href) ? "page" : undefined}
               onClick={close}
             >
-              {label}
+              {t(key)}
               {isActive(href) && (
                 <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-white/40 rounded-full nav-indicator" />
               )}
             </Link>
           ))}
+          <LanguageSwitcher />
         </div>
 
         {/* Mobile hamburger */}
         <button
           className="sm:hidden flex flex-col gap-[5px] p-1"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-label={menuOpen ? t("closeMenu") : t("openMenu")}
           aria-expanded={menuOpen}
         >
           <span className={`block w-5 h-[1.5px] bg-white/60 transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-[6.5px]" : ""}`} />
@@ -113,11 +116,11 @@ export default function Nav() {
       </div>
 
       {/* Mobile menu dropdown */}
-      <div className={`sm:hidden overflow-hidden transition-all duration-400 ${menuOpen ? "max-h-60" : "max-h-0"}`} role="menu">
+      <div className={`sm:hidden overflow-hidden transition-all duration-400 ${menuOpen ? "max-h-80" : "max-h-0"}`} role="menu">
         <div className="px-6 py-4 flex flex-col gap-4 text-[14px]">
-          {navLinks.map(({ label, href }) => (
+          {navLinks.map(({ key, href }) => (
             <Link
-              key={label}
+              key={key}
               href={href}
               onClick={close}
               className={`transition-colors duration-300 ${
@@ -126,9 +129,12 @@ export default function Nav() {
               role="menuitem"
               aria-current={isActive(href) ? "page" : undefined}
             >
-              {label}
+              {t(key)}
             </Link>
           ))}
+          <div className="pt-2 border-t border-white/[0.04]">
+            <LanguageSwitcher />
+          </div>
         </div>
       </div>
     </nav>

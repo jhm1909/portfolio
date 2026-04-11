@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface LivePreviewProps {
   url: string;
@@ -8,6 +9,7 @@ interface LivePreviewProps {
 }
 
 export default function LivePreview({ url, title }: LivePreviewProps) {
+  const t = useTranslations("CaseStudy");
   const [loaded, setLoaded] = useState(false);
   const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,7 +33,7 @@ export default function LivePreview({ url, title }: LivePreviewProps) {
   }, []);
 
   return (
-    <div ref={containerRef} className="live-preview group/preview" aria-label={`Live preview of ${title}`}>
+    <div ref={containerRef} className="live-preview group/preview" aria-label={t("livePreviewAria", { title })}>
       {/* Browser chrome */}
       <div className="flex items-center gap-1.5 px-3 py-2 border-b border-white/[0.06]">
         <span className="w-[7px] h-[7px] rounded-full bg-white/[0.08]" />
@@ -64,7 +66,7 @@ export default function LivePreview({ url, title }: LivePreviewProps) {
       {/* Hover overlay */}
       <div className="absolute inset-0 z-20 rounded-2xl bg-transparent opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
         <span className="text-[11px] text-white/60 bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
-          Visit site ↗
+          {t("visitSite")} ↗
         </span>
       </div>
     </div>

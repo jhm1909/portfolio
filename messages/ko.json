@@ -1,0 +1,75 @@
+{
+  "Metadata": {
+    "rootTitle": "정하민 — 풀스택 개발자",
+    "rootDescription": "한국을 기반으로 활동하는 풀스택 개발자. AI 통합, SaaS MVP, 마케팅 사이트 등 전 세계 프리랜스 프로젝트를 진행합니다.",
+    "siteName": "정하민",
+    "blogTitle": "블로그 — 정하민",
+    "blogDescription": "개발, 디자인, 그리고 디지털 경험을 만드는 일에 대한 생각들."
+  },
+  "Nav": {
+    "work": "프로젝트",
+    "about": "소개",
+    "contact": "연락",
+    "blog": "블로그",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기"
+  },
+  "Hero": {
+    "eyebrow": "개발자 & 디자이너",
+    "titleLine1": "디지털 경험을",
+    "titleLine2": "만듭니다.",
+    "subtitle": "자연스럽고, 정교하며, 목적이 분명한 인터페이스를 만듭니다.",
+    "cta": "프로젝트 보기"
+  },
+  "Work": {
+    "eyebrow": "선별 작업물",
+    "title": "만들어 온 것들."
+  },
+  "About": {
+    "eyebrow": "소개",
+    "title": "저에 대해 간단히.",
+    "paragraph1": "저는 가장 좋은 소프트웨어는 보이지 않는다고 믿는 개발자입니다. 코드, 디자인, 그리고 사람들이 제가 만든 것을 경험하는 방식 — 모든 작업은 명료함에서 시작됩니다.",
+    "paragraph2": "엔지니어링과 디자인이 만나는 지점에서, 기술적으로 탄탄할 뿐 아니라 사용하는 것 자체가 즐거운 제품을 만듭니다. 픽셀 하나, 인터랙션 하나 — 모두가 중요합니다.",
+    "techLabel": "기술 스택",
+    "journeyLabel": "여정"
+  },
+  "Contact": {
+    "eyebrow": "연락",
+    "title": "이야기해 봐요.",
+    "description": "함께 일하는 데 관심 있으신가요? 연락 주시면 기쁘게 듣겠습니다.",
+    "nameLabel": "이름",
+    "namePlaceholder": "성함",
+    "emailLabel": "이메일",
+    "emailPlaceholder": "you@example.com",
+    "messageLabel": "메시지",
+    "messagePlaceholder": "프로젝트에 대해 말씀해 주세요...",
+    "buttonIdle": "메시지 보내기",
+    "buttonSent": "이메일 앱을 여는 중...",
+    "subjectPrefix": "포트폴리오 문의"
+  },
+  "Footer": {
+    "copyright": "All rights reserved.",
+    "backToTop": "맨 위로"
+  },
+  "BlogList": {
+    "eyebrow": "블로그",
+    "title": "생각과 글.",
+    "searchPlaceholder": "글 검색...",
+    "allTagFilter": "전체",
+    "noResults": "글이 없습니다."
+  },
+  "BlogPost": {
+    "previous": "이전",
+    "next": "다음",
+    "navAriaLabel": "블로그 글 탐색"
+  },
+  "CaseStudy": {
+    "challenge": "문제",
+    "solution": "해결 방법",
+    "result": "결과",
+    "features": "주요 기능",
+    "backToWork": "작업물로 돌아가기",
+    "visitSite": "사이트 방문",
+    "livePreviewAria": "{title} 실시간 미리보기"
+  }
+}

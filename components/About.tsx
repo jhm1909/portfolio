@@ -1,32 +1,30 @@
+import { getTranslations } from "next-intl/server";
 import { skills, experience } from "@/lib/data";
 
-export default function About() {
+export default async function About() {
+  const t = await getTranslations("About");
   return (
     <section id="about" className="py-20 sm:py-32 lg:py-44 scroll-mt-12">
       <div className="max-w-[980px] mx-auto px-6">
         <div className="reveal text-center mb-14 sm:mb-24">
-          <p className="text-[12px] sm:text-[13px] text-white/35 tracking-[0.12em] uppercase mb-3 sm:mb-4">About</p>
-          <h2 className="text-[clamp(28px,5vw,56px)] font-semibold tracking-[-0.03em]">A little about me.</h2>
+          <p className="text-[12px] sm:text-[13px] text-white/35 tracking-[0.12em] uppercase mb-3 sm:mb-4">{t("eyebrow")}</p>
+          <h2 className="text-[clamp(28px,5vw,56px)] font-semibold tracking-[-0.03em]">{t("title")}</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-16">
           <div className="reveal md:col-span-3">
             <div className="liquid-glass p-6 sm:p-8 md:p-10">
               <p className="text-[14px] sm:text-[16px] text-white/45 leading-[1.85] font-light">
-                I&apos;m a developer who believes the best software feels invisible.
-                My work is guided by clarity — in code, in design, and in how people
-                experience what I build.
+                {t("paragraph1")}
               </p>
               <p className="mt-4 sm:mt-5 text-[14px] sm:text-[16px] text-white/45 leading-[1.85] font-light">
-                I focus on the intersection of engineering and design, creating products
-                that are not only technically sound but genuinely pleasant to use.
-                Every pixel, every interaction — it all matters.
+                {t("paragraph2")}
               </p>
             </div>
           </div>
 
           <div className="reveal md:col-span-2">
-            <p className="text-[11px] text-white/20 uppercase tracking-[0.14em] mb-5">Technologies</p>
+            <p className="text-[11px] text-white/20 uppercase tracking-[0.14em] mb-5">{t("techLabel")}</p>
             <div className="reveal-stagger grid grid-cols-2 gap-2">
               {skills.map((skill) => (
                 <div key={skill} className="liquid-glass-pill text-center py-2.5 text-[11px] sm:text-[12px] text-white/45">{skill}</div>
@@ -37,7 +35,7 @@ export default function About() {
 
         <div className="mt-20 sm:mt-28">
           <div className="reveal">
-            <p className="text-[11px] text-white/20 uppercase tracking-[0.14em] mb-6 sm:mb-8">Experience</p>
+            <p className="text-[11px] text-white/20 uppercase tracking-[0.14em] mb-6 sm:mb-8">{t("journeyLabel")}</p>
           </div>
           <div className="reveal">
             <div className="liquid-glass overflow-hidden">

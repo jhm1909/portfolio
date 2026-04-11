@@ -58,18 +58,18 @@ export const projects: Project[] = [
 ];
 
 export const techExperience: Record<string, { level: string; years: string }> = {
-  "React": { level: "Advanced", years: "3+ years" },
-  "Next.js": { level: "Advanced", years: "2+ years" },
-  "TypeScript": { level: "Advanced", years: "2+ years" },
-  "Node.js": { level: "Intermediate", years: "2+ years" },
-  "Tailwind CSS": { level: "Advanced", years: "2+ years" },
-  "PostgreSQL": { level: "Intermediate", years: "1+ year" },
-  "Prisma": { level: "Intermediate", years: "1+ year" },
-  "Docker": { level: "Beginner", years: "< 1 year" },
-  "Git": { level: "Advanced", years: "3+ years" },
-  "AWS": { level: "Beginner", years: "< 1 year" },
-  "Vercel": { level: "Advanced", years: "2+ years" },
-  "Figma": { level: "Intermediate", years: "1+ year" },
+  "React": { level: "Intermediate", years: "2 years" },
+  "Next.js": { level: "Intermediate", years: "2 years" },
+  "TypeScript": { level: "Intermediate", years: "2 years" },
+  "Tailwind CSS": { level: "Intermediate", years: "2 years" },
+  "Node.js": { level: "Intermediate", years: "1+ year" },
+  "Astro": { level: "Beginner", years: "1 year" },
+  "Cloudflare Workers": { level: "Beginner", years: "1 year" },
+  "PostgreSQL": { level: "Beginner", years: "1 year" },
+  "Prisma": { level: "Beginner", years: "1 year" },
+  "Git": { level: "Intermediate", years: "2 years" },
+  "Vercel": { level: "Intermediate", years: "2 years" },
+  "Figma": { level: "Beginner", years: "1 year" },
 };
 
 export const skills = Object.keys(techExperience);
@@ -82,23 +82,22 @@ export interface Experience {
 }
 
 export const experience: Experience[] = [
-  { role: "Frontend Developer", company: "Tech Corp", period: "2023 — Present", desc: "Leading frontend architecture and design systems." },
-  { role: "Full-Stack Intern", company: "Startup Inc", period: "2022 — 2023", desc: "Shipped 12 features across web and mobile." },
-  { role: "Freelance Developer", company: "Independent", period: "2021 — 2022", desc: "Delivered 8 projects for 5 clients." },
+  { role: "Building MyCar", company: "Personal Project", period: "2025 — 2026", desc: "Bilingual car marketplace with AI-powered recommendations." },
+  { role: "Building Hey Nabi", company: "Personal Project", period: "2024 — 2025", desc: "Real-time lecture translation with 99% STT accuracy." },
+  { role: "Started web development", company: "Self-taught", period: "2024", desc: "Learning React, TypeScript, and Next.js from the ground up." },
 ];
 
 export const socialLinks = [
+  { label: "Email", href: "mailto:jeonghamin1909@gmail.com" },
   { label: "GitHub", href: "https://github.com/jhm1909" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Twitter", href: "https://twitter.com" },
 ];
 
 export const navLinks = [
-  { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
-  { label: "Contact", href: "/#contact" },
-  { label: "Blog", href: "/blog" },
-];
+  { key: "work", href: "/#work" },
+  { key: "about", href: "/#about" },
+  { key: "contact", href: "/#contact" },
+  { key: "blog", href: "/blog" },
+] as const;
 
 /* ───── Blog Data ───── */
 

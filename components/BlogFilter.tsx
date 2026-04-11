@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import type { BlogPost } from "@/lib/data";
 
 interface BlogFilterProps {
@@ -10,6 +11,7 @@ interface BlogFilterProps {
 }
 
 export default function BlogFilter({ posts, tags }: BlogFilterProps) {
+  const t = useTranslations("BlogList");
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [search, setSearch] = useState("");
 
@@ -29,7 +31,7 @@ export default function BlogFilter({ posts, tags }: BlogFilterProps) {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search posts..."
+          placeholder={t("searchPlaceholder")}
           className="w-full bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-2.5 text-[13px] text-white/80 placeholder:text-white/15 outline-none focus:border-white/15 focus-visible:ring-1 focus-visible:ring-white/20 transition-colors duration-300"
         />
         <div className="flex flex-wrap gap-2">
@@ -39,7 +41,7 @@ export default function BlogFilter({ posts, tags }: BlogFilterProps) {
               !activeTag ? "text-white/80 bg-white/[0.08] border-white/[0.15]" : "text-white/35 hover:text-white/60"
             }`}
           >
-            All
+            {t("allTagFilter")}
           </button>
           {tags.map((tag) => (
             <button
@@ -58,7 +60,7 @@ export default function BlogFilter({ posts, tags }: BlogFilterProps) {
       {/* Posts */}
       <div className="space-y-4">
         {filtered.length === 0 && (
-          <p className="text-center text-[14px] text-white/25 py-12">No posts found.</p>
+          <p className="text-center text-[14px] text-white/25 py-12">{t("noResults")}</p>
         )}
         {filtered.map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`} className="block">

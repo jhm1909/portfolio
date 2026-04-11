@@ -1,30 +1,47 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ReadingProgress from "@/components/ReadingProgress";
 import JsonLd from "@/components/JsonLd";
 import { posts, getPostBySlug, getAdjacentPosts } from "@/lib/data";
+import { routing } from "@/i18n/routing";
+
+const localePath = (locale: string, path: string = "") =>
+  `${locale === routing.defaultLocale ? "" : "/" + locale}${path}`;
 
 export function generateStaticParams() {
-  return posts.map((p) => ({ slug: p.slug }));
+  return routing.locales.flatMap((locale) =>
+    posts.map((p) => ({ locale, slug: p.slug }))
+  );
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>;
+}): Promise<Metadata> {
+  const { slug, locale } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  const siteName = t("siteName");
+
+  const languages = Object.fromEntries(
+    routing.locales.map((l) => [l, localePath(l, `/blog/${slug}`)])
+  );
 
   return {
-    title: `${post.title} — Cappy`,
+    title: `${post.title} — ${siteName}`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
-      url: `https://cappy.dev/blog/${slug}`,
+      url: `https://jeonghamin.dev${localePath(locale, `/blog/${slug}`)}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -32,7 +49,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: post.excerpt,
     },
     alternates: {
-      canonical: `https://cappy.dev/blog/${slug}`,
+      canonical: `https://jeonghamin.dev${localePath(locale, `/blog/${slug}`)}`,
+      languages,
     },
   };
 }
@@ -90,12 +108,18 @@ function renderContent(content: string) {
   });
 }
 
-export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>;
+}) {
+  const { slug, locale } = await params;
+  setRequestLocale(locale);
   const post = getPostBySlug(slug);
 
   if (!post) notFound();
 
+  const t = await getTranslations("BlogPost");
   const { prev, next } = getAdjacentPosts(slug);
 
   const jsonLd = {
@@ -104,8 +128,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    author: { "@type": "Person", name: "Cappy", url: "https://cappy.dev" },
-    url: `https://cappy.dev/blog/${slug}`,
+    author: { "@type": "Person", name: "Ha-min Jeong", url: "https://jeonghamin.dev" },
+    url: `https://jeonghamin.dev${localePath(locale, `/blog/${slug}`)}`,
   };
 
   return (
@@ -136,13 +160,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
       </article>
 
-      {/* Prev / Next navigation */}
       {(prev || next) && (
-        <nav className="max-w-[680px] mx-auto px-6 pb-32" aria-label="Blog post navigation">
+        <nav className="max-w-[680px] mx-auto px-6 pb-32" aria-label={t("navAriaLabel")}>
           <div className="border-t border-white/[0.06] pt-8 grid grid-cols-2 gap-4">
             {prev ? (
               <Link href={`/blog/${prev.slug}`} className="group text-left">
-                <span className="text-[10px] text-white/20 uppercase tracking-[0.12em]">Previous</span>
+                <span className="text-[10px] text-white/20 uppercase tracking-[0.12em]">{t("previous")}</span>
                 <p className="text-[14px] text-white/50 group-hover:text-white/80 transition-colors duration-300 mt-1 leading-snug">
                   {prev.title}
                 </p>
@@ -150,7 +173,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             ) : <div />}
             {next ? (
               <Link href={`/blog/${next.slug}`} className="group text-right">
-                <span className="text-[10px] text-white/20 uppercase tracking-[0.12em]">Next</span>
+                <span className="text-[10px] text-white/20 uppercase tracking-[0.12em]">{t("next")}</span>
                 <p className="text-[14px] text-white/50 group-hover:text-white/80 transition-colors duration-300 mt-1 leading-snug">
                   {next.title}
                 </p>

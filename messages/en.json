@@ -1,0 +1,75 @@
+{
+  "Metadata": {
+    "rootTitle": "Ha-min Jeong — Full-Stack Developer",
+    "rootDescription": "Full-stack developer based in South Korea. Available worldwide for AI integrations, SaaS MVPs, and marketing sites.",
+    "siteName": "Ha-min Jeong",
+    "blogTitle": "Blog — Ha-min Jeong",
+    "blogDescription": "Thoughts on development, design, and building digital experiences."
+  },
+  "Nav": {
+    "work": "Work",
+    "about": "About",
+    "contact": "Contact",
+    "blog": "Blog",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "Hero": {
+    "eyebrow": "Developer & Designer",
+    "titleLine1": "Crafting digital",
+    "titleLine2": "experiences.",
+    "subtitle": "I build interfaces that feel effortless — simple, precise, and purposeful.",
+    "cta": "See my work"
+  },
+  "Work": {
+    "eyebrow": "Selected Work",
+    "title": "Things I've built."
+  },
+  "About": {
+    "eyebrow": "About",
+    "title": "A little about me.",
+    "paragraph1": "I'm a developer who believes the best software feels invisible. My work is guided by clarity — in code, in design, and in how people experience what I build.",
+    "paragraph2": "I focus on the intersection of engineering and design, creating products that are not only technically sound but genuinely pleasant to use. Every pixel, every interaction — it all matters.",
+    "techLabel": "Technologies",
+    "journeyLabel": "Journey"
+  },
+  "Contact": {
+    "eyebrow": "Contact",
+    "title": "Let's talk.",
+    "description": "Interested in working together? I'd love to hear from you.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell me about your project...",
+    "buttonIdle": "Send Message",
+    "buttonSent": "Opening email client...",
+    "subjectPrefix": "Portfolio Contact"
+  },
+  "Footer": {
+    "copyright": "All rights reserved.",
+    "backToTop": "Back to top"
+  },
+  "BlogList": {
+    "eyebrow": "Blog",
+    "title": "Thoughts & writings.",
+    "searchPlaceholder": "Search posts...",
+    "allTagFilter": "All",
+    "noResults": "No posts found."
+  },
+  "BlogPost": {
+    "previous": "Previous",
+    "next": "Next",
+    "navAriaLabel": "Blog post navigation"
+  },
+  "CaseStudy": {
+    "challenge": "The Challenge",
+    "solution": "The Solution",
+    "result": "The Result",
+    "features": "Key Features",
+    "backToWork": "Back to work",
+    "visitSite": "Visit live site",
+    "livePreviewAria": "Live preview of {title}"
+  }
+}

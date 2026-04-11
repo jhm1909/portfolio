@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /_next/
+Disallow: /api/
 
-Sitemap: https://cappy.dev/sitemap.xml
+Sitemap: https://jeonghamin.dev/sitemap.xml
