@@ -70,6 +70,12 @@ test.describe("Blog", () => {
     await expect(page.getByText("Previous")).toBeVisible();
     await expect(page.getByText("Next")).toBeVisible();
   });
+
+  test("blog post has table of contents", async ({ page }) => {
+    await page.goto(`${BASE}/blog/building-liquid-glass-ui`);
+    const tocHeading = page.getByText("Table of Contents");
+    await expect(tocHeading.first()).toBeVisible();
+  });
 });
 
 test.describe("Case Study", () => {
