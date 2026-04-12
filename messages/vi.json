@@ -68,6 +68,10 @@
     "writtenIn": "Viết bằng {language}",
     "related": "Bài viết liên quan"
   },
+  "LanguageSwitcher": {
+    "label": "Ngôn ngữ",
+    "searchPlaceholder": "Tìm ngôn ngữ..."
+  },
   "CaseStudy": {
     "challenge": "Vấn đề",
     "solution": "Giải pháp",

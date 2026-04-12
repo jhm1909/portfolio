@@ -68,6 +68,10 @@
     "writtenIn": "{language}(으)로 작성됨",
     "related": "관련 글"
   },
+  "LanguageSwitcher": {
+    "label": "언어",
+    "searchPlaceholder": "언어 검색..."
+  },
   "CaseStudy": {
     "challenge": "문제",
     "solution": "해결 방법",

@@ -68,6 +68,10 @@
     "writtenIn": "Written in {language}",
     "related": "Related Posts"
   },
+  "LanguageSwitcher": {
+    "label": "Language",
+    "searchPlaceholder": "Search languages..."
+  },
   "CaseStudy": {
     "challenge": "The Challenge",
     "solution": "The Solution",
