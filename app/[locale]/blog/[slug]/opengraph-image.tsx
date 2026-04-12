@@ -1,13 +1,14 @@
 import { ImageResponse } from "next/og";
-import { getPostBySlug, posts } from "@/lib/data";
+import { getAllSlugs, getPostBySlug } from "@/lib/blog";
 import { routing } from "@/i18n/routing";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export function generateStaticParams() {
+  const slugs = getAllSlugs();
   return routing.locales.flatMap((locale) =>
-    posts.map((p) => ({ locale, slug: p.slug }))
+    slugs.map((slug) => ({ locale, slug }))
   );
 }
 
@@ -56,7 +57,7 @@ export default async function OGImage({
             maxWidth: "900px",
           }}
         >
-          {post?.title ?? "Blog Post"}
+          {post?.meta.title ?? "Blog Post"}
         </div>
         <div
           style={{
@@ -68,7 +69,7 @@ export default async function OGImage({
             lineHeight: 1.5,
           }}
         >
-          {post?.excerpt ?? ""}
+          {post?.meta.excerpt ?? ""}
         </div>
       </div>
     ),

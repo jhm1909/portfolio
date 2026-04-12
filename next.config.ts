@@ -2,20 +2,16 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 import createMDX from "@next/mdx";
-import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code";
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: ["remark-gfm"],
     rehypePlugins: [
-      rehypeSlug,
-      [rehypePrettyCode, { theme: "github-dark-dimmed", keepBackground: false }],
-      [rehypeAutolinkHeadings, { behavior: "wrap" }],
+      "rehype-slug",
+      ["rehype-pretty-code", { theme: "github-dark-dimmed", keepBackground: false }],
+      ["rehype-autolink-headings", { behavior: "wrap" }],
     ],
   },
 });
