@@ -63,6 +63,10 @@
     "next": "Next",
     "navAriaLabel": "Blog post navigation"
   },
+  "LanguageSwitcher": {
+    "label": "Language",
+    "searchPlaceholder": "Search languages..."
+  },
   "CaseStudy": {
     "challenge": "The Challenge",
     "solution": "The Solution",
