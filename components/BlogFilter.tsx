@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import type { BlogPost } from "@/lib/data";
+import type { BlogPost } from "@/lib/blog";
 
 interface BlogFilterProps {
   posts: BlogPost[];
@@ -16,10 +16,11 @@ export default function BlogFilter({ posts, tags }: BlogFilterProps) {
   const [search, setSearch] = useState("");
 
   const filtered = posts.filter((post) => {
-    const matchesTag = !activeTag || post.tags.includes(activeTag);
-    const matchesSearch = !search ||
-      post.title.toLowerCase().includes(search.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(search.toLowerCase());
+    const matchesTag = !activeTag || post.meta.tags.includes(activeTag);
+    const matchesSearch =
+      !search ||
+      post.meta.title.toLowerCase().includes(search.toLowerCase()) ||
+      post.meta.excerpt.toLowerCase().includes(search.toLowerCase());
     return matchesTag && matchesSearch;
   });
 
@@ -38,7 +39,9 @@ export default function BlogFilter({ posts, tags }: BlogFilterProps) {
           <button
             onClick={() => setActiveTag(null)}
             className={`liquid-glass-pill px-3 py-1 text-[11px] transition-all duration-300 ${
-              !activeTag ? "text-white/80 bg-white/[0.08] border-white/[0.15]" : "text-white/35 hover:text-white/60"
+              !activeTag
+                ? "text-white/80 bg-white/[0.08] border-white/[0.15]"
+                : "text-white/35 hover:text-white/60"
             }`}
           >
             {t("allTagFilter")}
@@ -48,7 +51,9 @@ export default function BlogFilter({ posts, tags }: BlogFilterProps) {
               key={tag}
               onClick={() => setActiveTag(activeTag === tag ? null : tag)}
               className={`liquid-glass-pill px-3 py-1 text-[11px] transition-all duration-300 ${
-                activeTag === tag ? "text-white/80 bg-white/[0.08] border-white/[0.15]" : "text-white/35 hover:text-white/60"
+                activeTag === tag
+                  ? "text-white/80 bg-white/[0.08] border-white/[0.15]"
+                  : "text-white/35 hover:text-white/60"
               }`}
             >
               {tag}
@@ -60,26 +65,49 @@ export default function BlogFilter({ posts, tags }: BlogFilterProps) {
       {/* Posts */}
       <div className="space-y-4">
         {filtered.length === 0 && (
-          <p className="text-center text-[14px] text-white/25 py-12">{t("noResults")}</p>
+          <p className="text-center text-[14px] text-white/25 py-12">
+            {t("noResults")}
+          </p>
         )}
         {filtered.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`} className="block">
+          <Link
+            key={post.slug}
+            href={`/blog/${post.slug}`}
+            className="block"
+          >
             <article className="liquid-glass relative group transition-all duration-500 hover:border-white/[0.12] hover:-translate-y-1 hover:shadow-[0_24px_60px_-16px_rgba(0,0,0,0.4)]">
               <div className="relative z-10 p-6 sm:p-8 md:p-10">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3">
-                  <time dateTime={post.date} className="text-[11px] text-white/20 font-mono">{post.date}</time>
-                  <span className="hidden sm:block text-white/10" aria-hidden="true">·</span>
-                  <span className="text-[11px] text-white/20">{post.readTime}</span>
+                  <time
+                    dateTime={post.meta.date}
+                    className="text-[11px] text-white/20 font-mono"
+                  >
+                    {post.meta.date}
+                  </time>
+                  <span
+                    className="hidden sm:block text-white/10"
+                    aria-hidden="true"
+                  >
+                    ·
+                  </span>
+                  <span className="text-[11px] text-white/20">
+                    {t("readTime", { minutes: post.readTime })}
+                  </span>
                 </div>
                 <h2 className="text-lg sm:text-xl font-semibold tracking-[-0.01em] mb-2 group-hover:text-white transition-colors duration-300">
-                  {post.title}
+                  {post.meta.title}
                 </h2>
                 <p className="text-[13px] sm:text-[14px] text-white/35 leading-[1.7] mb-3">
-                  {post.excerpt}
+                  {post.meta.excerpt}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
-                  {post.tags.map((tag) => (
-                    <span key={tag} className="text-[10px] text-white/20 bg-white/[0.03] px-2 py-0.5 rounded-full">{tag}</span>
+                  {post.meta.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] text-white/20 bg-white/[0.03] px-2 py-0.5 rounded-full"
+                    >
+                      {tag}
+                    </span>
                   ))}
                 </div>
               </div>
