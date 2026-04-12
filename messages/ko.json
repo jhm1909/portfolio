@@ -63,6 +63,10 @@
     "next": "다음",
     "navAriaLabel": "블로그 글 탐색"
   },
+  "LanguageSwitcher": {
+    "label": "언어",
+    "searchPlaceholder": "언어 검색..."
+  },
   "CaseStudy": {
     "challenge": "문제",
     "solution": "해결 방법",

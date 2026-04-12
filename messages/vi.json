@@ -63,6 +63,10 @@
     "next": "Sau",
     "navAriaLabel": "Điều hướng bài viết blog"
   },
+  "LanguageSwitcher": {
+    "label": "Ngôn ngữ",
+    "searchPlaceholder": "Tìm ngôn ngữ..."
+  },
   "CaseStudy": {
     "challenge": "Vấn đề",
     "solution": "Giải pháp",

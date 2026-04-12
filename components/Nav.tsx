@@ -116,7 +116,7 @@ export default function Nav() {
       </div>
 
       {/* Mobile menu dropdown */}
-      <div className={`sm:hidden overflow-hidden transition-all duration-400 ${menuOpen ? "max-h-80" : "max-h-0"}`} role="menu">
+      <div className={`sm:hidden overflow-hidden transition-all duration-400 bg-[#0c0c0c] ${menuOpen ? "max-h-[480px]" : "max-h-0"}`} role="menu">
         <div className="px-6 py-4 flex flex-col gap-4 text-[14px]">
           {navLinks.map(({ key, href }) => (
             <Link
@@ -133,7 +133,7 @@ export default function Nav() {
             </Link>
           ))}
           <div className="pt-2 border-t border-white/[0.04]">
-            <LanguageSwitcher />
+            <LanguageSwitcher inline />
           </div>
         </div>
       </div>
