@@ -1,9 +1,27 @@
+// next.config.ts
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+import createMDX from "@next/mdx";
+import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypePrettyCode, { theme: "github-dark-dimmed", keepBackground: false }],
+      [rehypeAutolinkHeadings, { behavior: "wrap" }],
+    ],
+  },
+});
+
 const nextConfig: NextConfig = {
+  pageExtensions: ["ts", "tsx", "mdx"],
   images: {
     unoptimized: true,
   },
@@ -57,6 +75,6 @@ const nextConfig: NextConfig = {
   ],
 };
 
-export default withNextIntl(nextConfig);
+export default withMDX(withNextIntl(nextConfig));
 
-import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());
+import("@opennextjs/cloudflare").then((m) => m.initOpenNextCloudflareForDev());
