@@ -56,12 +56,17 @@
     "title": "Thoughts & writings.",
     "searchPlaceholder": "Search posts...",
     "allTagFilter": "All",
-    "noResults": "No posts found."
+    "noResults": "No posts found.",
+    "readTime": "{minutes} min read"
   },
   "BlogPost": {
     "previous": "Previous",
     "next": "Next",
-    "navAriaLabel": "Blog post navigation"
+    "navAriaLabel": "Blog post navigation",
+    "toc": "Table of Contents",
+    "readTime": "{minutes} min read",
+    "writtenIn": "Written in {language}",
+    "related": "Related Posts"
   },
   "CaseStudy": {
     "challenge": "The Challenge",

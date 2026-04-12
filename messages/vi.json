@@ -56,12 +56,17 @@
     "title": "Suy nghĩ & ghi chép.",
     "searchPlaceholder": "Tìm bài viết...",
     "allTagFilter": "Tất cả",
-    "noResults": "Không tìm thấy bài viết nào."
+    "noResults": "Không tìm thấy bài viết nào.",
+    "readTime": "{minutes} phút đọc"
   },
   "BlogPost": {
     "previous": "Trước",
     "next": "Sau",
-    "navAriaLabel": "Điều hướng bài viết blog"
+    "navAriaLabel": "Điều hướng bài viết blog",
+    "toc": "Mục lục",
+    "readTime": "{minutes} phút đọc",
+    "writtenIn": "Viết bằng {language}",
+    "related": "Bài viết liên quan"
   },
   "CaseStudy": {
     "challenge": "Vấn đề",

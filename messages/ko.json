@@ -56,12 +56,17 @@
     "title": "생각과 글.",
     "searchPlaceholder": "글 검색...",
     "allTagFilter": "전체",
-    "noResults": "글이 없습니다."
+    "noResults": "글이 없습니다.",
+    "readTime": "{minutes}분 읽기"
   },
   "BlogPost": {
     "previous": "이전",
     "next": "다음",
-    "navAriaLabel": "블로그 글 탐색"
+    "navAriaLabel": "블로그 글 탐색",
+    "toc": "목차",
+    "readTime": "{minutes}분 읽기",
+    "writtenIn": "{language}(으)로 작성됨",
+    "related": "관련 글"
   },
   "CaseStudy": {
     "challenge": "문제",

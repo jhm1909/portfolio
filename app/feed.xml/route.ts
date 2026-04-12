@@ -1,17 +1,18 @@
-import { posts } from "@/lib/data";
+import { getAllPosts } from "@/lib/blog";
 
 const BASE = "https://jeonghamin.dev";
 
 export async function GET() {
+  const posts = getAllPosts();
   const items = posts
     .map(
       (post) => `
     <item>
-      <title><![CDATA[${post.title}]]></title>
+      <title><![CDATA[${post.meta.title}]]></title>
       <link>${BASE}/blog/${post.slug}</link>
       <guid isPermaLink="true">${BASE}/blog/${post.slug}</guid>
-      <description><![CDATA[${post.excerpt}]]></description>
-      <pubDate>${new Date(post.date).toUTCString()}</pubDate>
+      <description><![CDATA[${post.meta.excerpt}]]></description>
+      <pubDate>${new Date(post.meta.date).toUTCString()}</pubDate>
     </item>`
     )
     .join("");

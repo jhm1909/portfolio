@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { posts, projects } from "@/lib/data";
+import { projects } from "@/lib/data";
+import { getAllPosts } from "@/lib/blog";
 import { routing } from "@/i18n/routing";
 
 const BASE = "https://jeonghamin.dev";
@@ -28,8 +29,9 @@ function entry(
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const posts = getAllPosts();
   const blogEntries = posts.map((post) =>
-    entry(`/blog/${post.slug}`, new Date(post.date), "monthly", 0.7)
+    entry(`/blog/${post.slug}`, new Date(post.meta.date), "monthly", 0.7)
   );
   const workEntries = projects.map((project) =>
     entry(`/work/${project.slug}`, now, "monthly", 0.8)
