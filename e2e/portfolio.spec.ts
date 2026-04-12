@@ -82,14 +82,20 @@ test.describe("Case Study", () => {
   test("case study page loads", async ({ page }) => {
     await page.goto(`${BASE}/work/mycar`);
     await expect(page.locator("h1")).toContainText("MyCar");
-    await expect(page.getByText("The Challenge")).toBeVisible();
-    await expect(page.getByText("The Solution")).toBeVisible();
-    await expect(page.getByText("The Result")).toBeVisible();
+    await expect(page.locator("h2").filter({ hasText: "The Challenge" })).toBeVisible();
+    await expect(page.locator("h2").filter({ hasText: "The Solution" })).toBeVisible();
+    await expect(page.locator("h2").filter({ hasText: "The Result" })).toBeVisible();
   });
 
   test("case study has key features", async ({ page }) => {
     await page.goto(`${BASE}/work/heynabi`);
-    await expect(page.getByText("Key Features")).toBeVisible();
+    await expect(page.locator("h2").filter({ hasText: "Key Features" })).toBeVisible();
+  });
+
+  test("case study has metrics", async ({ page }) => {
+    await page.goto(`${BASE}/work/heynabi`);
+    await expect(page.getByText("99%")).toBeVisible();
+    await expect(page.getByText("STT Accuracy")).toBeVisible();
   });
 });
 
