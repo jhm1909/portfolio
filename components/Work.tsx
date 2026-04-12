@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { projects } from "@/lib/data";
+import type { Project } from "@/lib/work";
 import LivePreview from "./LivePreview";
 import TechPill from "./TechPill";
 
-function ProjectCard({ project }: { project: (typeof projects)[number] }) {
+function ProjectCard({ project }: { project: Project }) {
   const previewRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0.25);
 
@@ -29,29 +29,33 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
       <article className="project-card liquid-glass relative group">
         <div
           className="absolute -top-12 -right-12 w-40 sm:w-56 h-40 sm:h-56 rounded-full blur-[100px] pointer-events-none opacity-30"
-          style={{ background: project.orb }}
+          style={{ background: project.meta.orb }}
         />
         <div className="relative z-10 p-5 sm:p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
-          {/* Left: info */}
           <div className="flex-1 min-w-0">
-            <p className="text-[10px] sm:text-[11px] text-white/30 uppercase tracking-[0.14em] mb-2 sm:mb-3">{project.subtitle}</p>
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[-0.02em] leading-[1.15] mb-2 sm:mb-3">{project.title}</h3>
-            <p className="text-[12px] sm:text-[13px] text-white/40 leading-[1.7] mb-4">{project.description}</p>
+            <p className="text-[10px] sm:text-[11px] text-white/30 uppercase tracking-[0.14em] mb-2 sm:mb-3">
+              {project.meta.subtitle}
+            </p>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[-0.02em] leading-[1.15] mb-2 sm:mb-3">
+              {project.meta.title}
+            </h3>
+            <p className="text-[12px] sm:text-[13px] text-white/40 leading-[1.7] mb-4">
+              {project.meta.description}
+            </p>
             <div className="flex flex-wrap gap-1.5">
-              {project.tech.map((t) => (
+              {project.meta.tech.map((t) => (
                 <TechPill key={t} name={t} />
               ))}
             </div>
           </div>
 
-          {/* Right: live preview */}
-          {project.link && (
+          {project.meta.link && (
             <div
               ref={previewRef}
               className="w-full md:w-[260px] lg:w-[280px] shrink-0"
               style={{ "--preview-scale": scale } as React.CSSProperties}
             >
-              <LivePreview url={project.link} title={project.title} />
+              <LivePreview url={project.meta.link} title={project.meta.title} />
             </div>
           )}
         </div>
@@ -60,13 +64,15 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   );
 }
 
-export default function Work() {
+export default function Work({ projects }: { projects: Project[] }) {
   const t = useTranslations("Work");
   return (
     <section id="work" className="relative py-20 sm:py-32 lg:py-44 scroll-mt-12">
       <div className="max-w-[980px] mx-auto px-6">
         <div className="reveal text-center mb-14 sm:mb-24">
-          <p className="text-[12px] sm:text-[13px] text-white/35 tracking-[0.12em] uppercase mb-3 sm:mb-4">{t("eyebrow")}</p>
+          <p className="text-[12px] sm:text-[13px] text-white/35 tracking-[0.12em] uppercase mb-3 sm:mb-4">
+            {t("eyebrow")}
+          </p>
           <h2 className="text-[clamp(28px,5vw,56px)] font-semibold tracking-[-0.03em]">
             {t("title")}
           </h2>
@@ -74,7 +80,7 @@ export default function Work() {
 
         <div className="space-y-4 sm:space-y-5">
           {projects.map((project) => (
-            <div key={project.title} className="reveal">
+            <div key={project.meta.title} className="reveal">
               <ProjectCard project={project} />
             </div>
           ))}
