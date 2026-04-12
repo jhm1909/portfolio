@@ -4,7 +4,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ReadingProgress from "@/components/ReadingProgress";
 import JsonLd from "@/components/JsonLd";
+import TableOfContents from "@/components/mdx/TableOfContents";
 import {
   getAllProjects,
   getProjectBySlug,
@@ -94,9 +96,18 @@ export default async function CaseStudy({
       </div>
 
       <Nav />
+      <ReadingProgress />
 
-      <article className="max-w-[780px] mx-auto px-6 pt-32 sm:pt-40 pb-20">
-        <header className="mb-16">
+      <div className="relative max-w-[780px] mx-auto px-6 pt-32 sm:pt-40 pb-20">
+        {/* Desktop ToC — positioned outside article to the right */}
+        <aside className="absolute left-full top-0 ml-10 w-[200px] hidden xl:block">
+          <div className="pt-32 sm:pt-40">
+            <TableOfContents />
+          </div>
+        </aside>
+
+        <article>
+          <header className="mb-16">
           <Link
             href="/#work"
             className="inline-flex items-center gap-1 text-[12px] text-white/30 hover:text-white/60 transition-colors duration-300 mb-8"
@@ -154,11 +165,17 @@ export default async function CaseStudy({
           </div>
         )}
 
+        {/* Mobile ToC */}
+        <div className="xl:hidden">
+          <TableOfContents />
+        </div>
+
         {/* MDX content */}
         <div className="prose-custom">
           <MdxContent />
         </div>
-      </article>
+        </article>
+      </div>
 
       {/* Prev / Next project navigation */}
       {(prev || next) && (
