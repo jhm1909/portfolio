@@ -86,7 +86,7 @@ export default function LanguageSwitcher({ inline = false }: { inline?: boolean 
         <button
           onClick={() => setOpen(!open)}
           className="flex items-center gap-2 py-1 text-white/50 hover:text-white/80 transition-colors duration-300"
-          aria-expanded={open} aria-haspopup="listbox" aria-label={t("label")}
+          aria-expanded={open} aria-haspopup="listbox" aria-label={`${locale.toUpperCase()} – ${t("label")}`}
         >
           {CurrentFlag && <CurrentFlag size={20} />}
           <span className="uppercase text-[12px] font-medium tracking-wider">{locale}</span>
@@ -115,7 +115,7 @@ export default function LanguageSwitcher({ inline = false }: { inline?: boolean 
             ? "text-white/80 bg-white/[0.08]"
             : "text-white/50 hover:text-white/80 hover:bg-white/[0.06]"}
         `}
-        aria-expanded={open} aria-haspopup="listbox" aria-label={t("label")}
+        aria-expanded={open} aria-haspopup="listbox" aria-label={`${locale.toUpperCase()} – ${t("label")}`}
       >
         {CurrentFlag && <CurrentFlag size={16} />}
         <span className="uppercase font-medium tracking-wider">{locale}</span>
