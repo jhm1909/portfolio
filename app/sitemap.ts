@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/lib/data";
+import { getAllProjects } from "@/lib/work";
 import { getAllPosts } from "@/lib/blog";
 import { routing } from "@/i18n/routing";
 
@@ -33,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogEntries = posts.map((post) =>
     entry(`/blog/${post.slug}`, new Date(post.meta.date), "monthly", 0.7)
   );
+  const projects = getAllProjects();
   const workEntries = projects.map((project) =>
     entry(`/work/${project.slug}`, now, "monthly", 0.8)
   );

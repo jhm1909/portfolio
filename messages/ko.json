@@ -73,12 +73,15 @@
     "searchPlaceholder": "언어 검색..."
   },
   "CaseStudy": {
-    "challenge": "문제",
+    "challenge": "과제",
     "solution": "해결 방법",
     "result": "결과",
     "features": "주요 기능",
-    "backToWork": "작업물로 돌아가기",
+    "backToWork": "작업으로 돌아가기",
     "visitSite": "사이트 방문",
-    "livePreviewAria": "{title} 실시간 미리보기"
+    "livePreviewAria": "{title} 실시간 미리보기",
+    "previousProject": "이전",
+    "nextProject": "다음",
+    "projectNavAriaLabel": "프로젝트 탐색"
   }
 }

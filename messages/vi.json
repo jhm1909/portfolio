@@ -73,12 +73,15 @@
     "searchPlaceholder": "Tìm ngôn ngữ..."
   },
   "CaseStudy": {
-    "challenge": "Vấn đề",
+    "challenge": "Thách thức",
     "solution": "Giải pháp",
     "result": "Kết quả",
     "features": "Tính năng chính",
     "backToWork": "Quay lại dự án",
-    "visitSite": "Truy cập website",
-    "livePreviewAria": "Xem trước trực tiếp {title}"
+    "visitSite": "Xem trang web",
+    "livePreviewAria": "Xem trước trực tiếp {title}",
+    "previousProject": "Trước",
+    "nextProject": "Sau",
+    "projectNavAriaLabel": "Điều hướng dự án"
   }
 }

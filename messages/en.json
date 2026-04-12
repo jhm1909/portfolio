@@ -79,6 +79,9 @@
     "features": "Key Features",
     "backToWork": "Back to work",
     "visitSite": "Visit live site",
-    "livePreviewAria": "Live preview of {title}"
+    "livePreviewAria": "Live preview of {title}",
+    "previousProject": "Previous",
+    "nextProject": "Next",
+    "projectNavAriaLabel": "Project navigation"
   }
 }
