@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Project } from "@/lib/work";
@@ -8,22 +7,6 @@ import LivePreview from "./LivePreview";
 import TechPill from "./TechPill";
 
 function ProjectCard({ project }: { project: Project }) {
-  const previewRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0.25);
-
-  const updateScale = useCallback(() => {
-    if (previewRef.current) setScale(previewRef.current.offsetWidth / 1280);
-  }, []);
-
-  useEffect(() => {
-    const el = previewRef.current;
-    if (!el) return;
-    updateScale();
-    const ro = new ResizeObserver(updateScale);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [updateScale]);
-
   return (
     <Link href={`/work/${project.slug}`} className="block">
       <article className="project-card liquid-glass relative group">
@@ -50,11 +33,7 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
 
           {project.meta.link && (
-            <div
-              ref={previewRef}
-              className="w-full md:w-[260px] lg:w-[280px] shrink-0"
-              style={{ "--preview-scale": scale } as React.CSSProperties}
-            >
+            <div className="w-full md:w-[260px] lg:w-[280px] shrink-0">
               <LivePreview url={project.meta.link} title={project.meta.title} />
             </div>
           )}

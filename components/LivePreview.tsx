@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 
 interface LivePreviewProps {
@@ -12,7 +12,13 @@ export default function LivePreview({ url, title }: LivePreviewProps) {
   const t = useTranslations("CaseStudy");
   const [loaded, setLoaded] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [scale, setScale] = useState(0.234);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const updateScale = useCallback(() => {
+    const el = containerRef.current;
+    if (el) setScale(el.offsetWidth / 1280);
+  }, []);
 
   /* Only mount iframe when visible in viewport */
   useEffect(() => {
@@ -32,8 +38,18 @@ export default function LivePreview({ url, title }: LivePreviewProps) {
     return () => observer.disconnect();
   }, []);
 
+  /* Auto-calculate scale from container width */
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    updateScale();
+    const ro = new ResizeObserver(updateScale);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [updateScale]);
+
   return (
-    <div ref={containerRef} className="live-preview group/preview" aria-label={t("livePreviewAria", { title })}>
+    <div ref={containerRef} className="live-preview group/preview" style={{ "--preview-scale": scale } as React.CSSProperties} aria-label={t("livePreviewAria", { title })}>
       {/* Browser chrome */}
       <div className="flex items-center gap-1.5 px-3 py-2 border-b border-white/[0.06]">
         <span className="w-[7px] h-[7px] rounded-full bg-white/[0.08]" />
