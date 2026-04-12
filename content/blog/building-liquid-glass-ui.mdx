@@ -1,0 +1,44 @@
+export const meta = {
+  title: "Building a Liquid Glass UI for the Web",
+  excerpt: "How I recreated Apple's WWDC25 Liquid Glass design language using CSS backdrop-filter, layered materials, and subtle depth cues.",
+  date: "2026-04-07",
+  tags: ["CSS", "Design", "WWDC25"],
+  lang: "en",
+}
+
+Apple's WWDC25 introduction of Liquid Glass changed how we think about interface materials. The design language treats UI elements as responsive glass — refracting, reflecting, and adapting to their surroundings.
+
+## The Three Layers
+
+According to Apple's documentation, Liquid Glass is composed of three layers:
+
+1. **Highlight** — The specular shine on the top edge that catches light
+2. **Shadow** — Depth separation between foreground and background
+3. **Illumination** — The flexible material properties that adapt to context
+
+## Translating to CSS
+
+The key CSS properties that make this work on the web:
+
+```css
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(40px) saturate(180%) brightness(1.1);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.15);
+}
+```
+
+The `backdrop-filter` does the heavy lifting — it blurs and saturates whatever content sits behind the glass element. The `inset` box-shadow creates that subtle top-edge highlight.
+
+## Making It Feel Real
+
+The trick to convincing glass is giving it something to refract. I use ambient colored orbs in the background — soft blurred gradients that drift slowly. When glass elements sit on top of these, the backdrop-filter picks up the color and creates that adaptive tinting Apple describes.
+
+## Performance
+
+`backdrop-filter` is GPU-accelerated in modern browsers, so the performance cost is minimal. The floating orbs use CSS animations with `will-change: transform` to stay on the compositor layer.
+
+The result is a material system that feels alive without being distracting — exactly what Apple intended.
