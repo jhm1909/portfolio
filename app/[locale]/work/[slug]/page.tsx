@@ -111,6 +111,7 @@ export default async function CaseStudy({
           <Link
             href="/#work"
             className="inline-flex items-center gap-1 text-[12px] text-white/30 hover:text-white/60 transition-colors duration-300 mb-8"
+            transitionTypes={["nav-back"]}
           >
             ← {t("backToWork")}
           </Link>
@@ -188,6 +189,7 @@ export default async function CaseStudy({
               <Link
                 href={`/work/${prev.slug}`}
                 className="group text-left"
+                transitionTypes={["nav-back"]}
               >
                 <span className="text-[10px] text-white/20 uppercase tracking-[0.12em]">
                   {t("previousProject")}
@@ -203,6 +205,7 @@ export default async function CaseStudy({
               <Link
                 href={`/work/${next.slug}`}
                 className="group text-right"
+                transitionTypes={["nav-forward"]}
               >
                 <span className="text-[10px] text-white/20 uppercase tracking-[0.12em]">
                   {t("nextProject")}

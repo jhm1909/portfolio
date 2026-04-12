@@ -395,6 +395,57 @@ button:hover .link-arrow {
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.12); }
 
+/* ===== View Transitions ===== */
+
+/* Nav stays fixed during transitions */
+::view-transition-group(site-nav) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-nav) {
+  display: none;
+}
+::view-transition-new(site-nav) {
+  animation: none;
+}
+
+/* Directional slide — forward (prev→next, deeper) */
+::view-transition-old(.nav-forward) {
+  --slide-offset: -60px;
+  animation:
+    150ms ease-in both vt-fade reverse,
+    400ms ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 60px;
+  animation:
+    210ms ease-out 150ms both vt-fade,
+    400ms ease-in-out both vt-slide;
+}
+
+/* Directional slide — back (next→prev, shallower) */
+::view-transition-old(.nav-back) {
+  --slide-offset: 60px;
+  animation:
+    150ms ease-in both vt-fade reverse,
+    400ms ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -60px;
+  animation:
+    210ms ease-out 150ms both vt-fade,
+    400ms ease-in-out both vt-slide;
+}
+
+@keyframes vt-fade {
+  from { filter: blur(2px); opacity: 0; }
+  to   { filter: blur(0); opacity: 1; }
+}
+@keyframes vt-slide {
+  from { translate: var(--slide-offset); }
+  to   { translate: 0; }
+}
+
 /* ===== Reduced Motion — a11y ===== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -405,6 +456,12 @@ button:hover .link-arrow {
   }
   .reveal { opacity: 1; transform: none; }
   .reveal-stagger > * { opacity: 1; transform: none; }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
 }
 
 /* ===== Backdrop-filter fallback ===== */

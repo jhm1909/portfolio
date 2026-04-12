@@ -201,7 +201,7 @@ export default async function BlogPostPage({
         >
           <div className="border-t border-white/[0.06] pt-8 grid grid-cols-2 gap-4">
             {prev ? (
-              <Link href={`/blog/${prev.slug}`} className="group text-left">
+              <Link href={`/blog/${prev.slug}`} className="group text-left" transitionTypes={["nav-back"]}>
                 <span className="text-[10px] text-white/20 uppercase tracking-[0.12em]">
                   {t("previous")}
                 </span>
@@ -213,7 +213,7 @@ export default async function BlogPostPage({
               <div />
             )}
             {next ? (
-              <Link href={`/blog/${next.slug}`} className="group text-right">
+              <Link href={`/blog/${next.slug}`} className="group text-right" transitionTypes={["nav-forward"]}>
                 <span className="text-[10px] text-white/20 uppercase tracking-[0.12em]">
                   {t("next")}
                 </span>

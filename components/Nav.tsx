@@ -75,7 +75,7 @@ export default function Nav() {
   };
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 liquid-glass-nav" role="navigation" aria-label="Main navigation">
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 liquid-glass-nav" role="navigation" aria-label="Main navigation" style={{ viewTransitionName: "site-nav" }}>
       <div className="max-w-[980px] mx-auto px-6 h-11 flex items-center justify-between">
         <Link href="/" className="text-[13px] font-semibold tracking-[-0.01em]" onClick={close}>
           Ha-min.
