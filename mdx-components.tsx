@@ -2,6 +2,7 @@
 import type { MDXComponents } from "mdx/types";
 import CodeBlock from "@/components/mdx/CodeBlock";
 import Callout from "@/components/mdx/Callout";
+import LivePreview from "@/components/LivePreview";
 
 export function useMDXComponents(): MDXComponents {
   return {
@@ -131,6 +132,7 @@ export function useMDXComponents(): MDXComponents {
     ),
     hr: () => <hr className="section-divider my-10 border-none" />,
     Callout,
+    LivePreview,
     img: ({ alt, ...props }: React.ComponentPropsWithoutRef<"img">) => (
       <figure className="my-8">
         <img
