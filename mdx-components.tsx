@@ -1,5 +1,7 @@
 // mdx-components.tsx
 import type { MDXComponents } from "mdx/types";
+import CodeBlock from "@/components/mdx/CodeBlock";
+import Callout from "@/components/mdx/Callout";
 
 export function useMDXComponents(): MDXComponents {
   return {
@@ -96,12 +98,7 @@ export function useMDXComponents(): MDXComponents {
       );
     },
     pre: ({ children, ...props }: React.ComponentPropsWithoutRef<"pre">) => (
-      <pre
-        className="liquid-glass-subtle rounded-xl p-5 my-6 overflow-x-auto"
-        {...props}
-      >
-        {children}
-      </pre>
+      <CodeBlock {...props}>{children}</CodeBlock>
     ),
     table: ({
       children,
@@ -133,6 +130,7 @@ export function useMDXComponents(): MDXComponents {
       </td>
     ),
     hr: () => <hr className="section-divider my-10 border-none" />,
+    Callout,
     img: ({ alt, ...props }: React.ComponentPropsWithoutRef<"img">) => (
       <figure className="my-8">
         <img
